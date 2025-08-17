@@ -63,4 +63,19 @@ RIGHT JOIN Department AS d ON e.DepId=d.DeptId
 SELECT *FROM Employees 
 WHERE Salary<(SELECT AVG(Salary) FROM Employees)
 
+12.Try Catch
+
+BEGIN TRY
+ BEGIN TRANSACTION
+
+ UPDATE Employees
+ SET Salary=Salary+1000000
+ WHERE DepId=9
+ COMMIT
+ END TRY
+ BEGIN CATCH 
+  ROLLBACK
+  PRINT 'THERE IS ANN ERROR'+ERROR_MESSAGE()
+  END CATCH
+
 
